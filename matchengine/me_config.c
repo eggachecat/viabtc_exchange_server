@@ -6,7 +6,13 @@
 # include "me_config.h"
 
 struct settings settings;
-
+/**
+ * @brief 加载asset的json
+ * 
+ * @param root 
+ * @param key 
+ * @return int 
+ */
 static int load_assets(json_t *root, const char *key)
 {
     json_t *node = json_object_get(root, key);
@@ -29,7 +35,13 @@ static int load_assets(json_t *root, const char *key)
 
     return 0;
 }
-
+/**
+ * @brief 加载market的json
+ * 
+ * @param root 
+ * @param key 
+ * @return int 
+ */
 static int load_markets(json_t *root, const char *key)
 {
     json_t *node = json_object_get(root, key);
@@ -62,7 +74,12 @@ static int load_markets(json_t *root, const char *key)
 
     return 0;
 }
-
+/**
+ * @brief 读取json的函数,把结果读取到`settings`里(global variable)
+ * 
+ * @param root 
+ * @return int 
+ */
 static int read_config_from_json(json_t *root)
 {
     int ret;
@@ -141,7 +158,12 @@ static int read_config_from_json(json_t *root)
 
     return 0;
 }
-
+/**
+ * @brief 读取json
+ * 
+ * @param path 
+ * @return int 
+ */
 int init_config(const char *path)
 {
     json_error_t error;

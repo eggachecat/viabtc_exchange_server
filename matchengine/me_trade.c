@@ -27,7 +27,11 @@ static void market_dict_key_free(void *key)
 {
     free(key);
 }
-
+/**
+ * @brief 从json读取资市场资讯并注册市场讯息 
+ * 引用了 `market_create(&settings.markets[i]);` & `dict_add(dict_market, settings.markets[i].name, m);`
+ * @return int 
+ */
 int init_trade(void)
 {
     dict_types type;
@@ -52,7 +56,12 @@ int init_trade(void)
 
     return 0;
 }
-
+/**
+ * @brief Get the market object
+ * 
+ * @param name 市场名称
+ * @return market_t* 一个市场的struct
+ */
 market_t *get_market(const char *name)
 {
     dict_entry *entry = dict_find(dict_market, name);

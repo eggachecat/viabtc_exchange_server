@@ -219,7 +219,12 @@ int update_slice_history(MYSQL *conn, time_t end)
 
     return 0;
 }
-
+/**
+ * @brief 呼叫`dump_order_to_db`和`dump_balance_to_db`以及`update_slice_history`持久化
+ * 
+ * @param timestamp 
+ * @return int 
+ */
 int dump_to_db(time_t timestamp)
 {
     MYSQL *conn = mysql_connect(&settings.db_log);

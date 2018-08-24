@@ -5,7 +5,7 @@ CREATE TABLE `slice_balance_example` (
     `t`             TINYINT UNSIGNED NOT NULL,
     `balance`       DECIMAL(30,16) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
+-- t for `type`
 CREATE TABLE `slice_order_example` (
     `id`            BIGINT UNSIGNED NOT NULL PRIMARY KEY,
     `t`             TINYINT UNSIGNED NOT NULL,
@@ -19,7 +19,6 @@ CREATE TABLE `slice_order_example` (
     `taker_fee`     DECIMAL(30,4) NOT NULL,
     `maker_fee`     DECIMAL(30,4) NOT NULL,
     `left`          DECIMAL(30,8) NOT NULL,
-    `freeze`        DECIMAL(30,8) NOT NULL,
     `deal_stock`    DECIMAL(30,8) NOT NULL,
     `deal_money`    DECIMAL(30,16) NOT NULL,
     `deal_fee`      DECIMAL(30,12) NOT NULL

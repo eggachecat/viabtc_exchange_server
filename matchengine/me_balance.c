@@ -153,7 +153,14 @@ int asset_prec_show(const char *asset)
     struct asset_type *at = get_asset_type(asset);
     return at ? at->prec_show: -1;
 }
-
+/**
+ * @brief 取得用户的账户余额
+ * 
+ * @param user_id 
+ * @param type 
+ * @param asset 
+ * @return mpd_t* 
+ */
 mpd_t *balance_get(uint32_t user_id, uint32_t type, const char *asset)
 {
     struct balance_key key;

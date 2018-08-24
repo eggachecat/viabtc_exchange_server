@@ -174,7 +174,12 @@ static void set_sql(struct dict_sql_key *key, sds sql)
         entry->val = sql;
     }
 }
-
+/**
+ * @brief 负责储存user的order, 这边用hash将用户分到不同的table当中[trick]
+ * 
+ * @param order 
+ * @return int 
+ */
 static int append_user_order(order_t *order)
 {
     struct dict_sql_key key;

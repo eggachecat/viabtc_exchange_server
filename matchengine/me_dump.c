@@ -19,6 +19,14 @@ static sds sql_append_mpd(sds sql, mpd_t *val, bool comma)
     return sql;
 }
 
+/**
+ * @brief 把所有order导入到数据库
+ * 
+ * @param conn 
+ * @param table 
+ * @param list 
+ * @return int 
+ */
 static int dump_orders_list(MYSQL *conn, const char *table, skiplist_t *list)
 {
     sds sql = sdsempty();
@@ -78,7 +86,13 @@ static int dump_orders_list(MYSQL *conn, const char *table, skiplist_t *list)
     sdsfree(sql);
     return 0;
 }
-
+/**
+ * @brief  把所有order导入到数据库(告诉dump_orders_list保存ask和bids)
+ * 
+ * @param conn 
+ * @param table 
+ * @return int 
+ */
 int dump_orders(MYSQL *conn, const char *table)
 {
     sds sql = sdsempty();
@@ -122,7 +136,14 @@ int dump_orders(MYSQL *conn, const char *table)
 
     return 0;
 }
-
+/**
+ * @brief 把balance的信息保存到数据库
+ * 
+ * @param conn 
+ * @param table 
+ * @param dict 
+ * @return int 
+ */
 static int dump_balance_dict(MYSQL *conn, const char *table, dict_t *dict)
 {
     sds sql = sdsempty();
@@ -173,7 +194,13 @@ static int dump_balance_dict(MYSQL *conn, const char *table, dict_t *dict)
     sdsfree(sql);
     return 0;
 }
-
+/**
+ * @brief 做一些检查并呼叫`dump_balance_dict`
+ * 
+ * @param conn 
+ * @param table 
+ * @return int 
+ */
 int dump_balance(MYSQL *conn, const char *table)
 {
     sds sql = sdsempty();

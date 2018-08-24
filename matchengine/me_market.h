@@ -10,9 +10,28 @@
 
 extern uint64_t order_id_start;
 extern uint64_t deals_id_start;
-
+/**
+ * @brief order的结构,包含
+ * 1.   id: 订单的id
+ * 2.   type: 订单的类型(e.g. 市价单,限价单)
+ * 3.   side: 订单的方向(e.g. 买or卖)
+ * 4.   create_time: 订单的创建时间
+ * 5.   update_time: 订单的修改时间
+ * 6.   user_id: 拥有着的id
+ * 7.   market: 市场(e.g. "BTCUSDT")
+ * 8.   source: 来源(e.g. "ios")
+ * 9.   price: 订单的挂单价格
+ * 10.  amount: 订单的量
+ * 11.  taker_fee: taker的手续费
+ * 12.  maker_fee: maker的手续费
+ * 13.  left: 订单还有多少未完成(和amount有关)
+ * 14.  freeze: 订单有多少量是冻住的
+ * 15.  deal_stock: 成交了多少的量
+ * 16.  deal_money: 成交了`deal_stock`这么多,花了多少钱
+ * 17.  deal_fee: 成交了`deal_stock`这么多,花了多少手续费
+ */
 typedef struct order_t {
-    uint64_t        id;
+    uint64_t        id; 
     uint32_t        type;
     uint32_t        side;
     double          create_time;
@@ -31,6 +50,20 @@ typedef struct order_t {
     mpd_t           *deal_fee;
 } order_t;
 
+/**
+ * @brief 市场资讯
+ * 1.  name: 市场的名称(e.g. BTCUSDT)
+ * 2.  stock: 交易物名字(e.g. BTC)
+ * 3.  money: 结算币名字(e.g. USDT)
+ * 4.  stock_prec: stock的精度
+ * 5.  money_prec: money的精度
+ * 6.  fee_prec: 手续费的精度
+ * 7.  min_amount: 最小交易量
+ * 8.  orders:
+ * 9.  users:
+ * 10. asks: 当前市场的挂单的买价
+ * 11. bids: 当前市场的挂单的卖钱
+ */
 typedef struct market_t {
     char            *name;
     char            *stock;

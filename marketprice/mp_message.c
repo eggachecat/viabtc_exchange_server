@@ -228,7 +228,12 @@ static int load_market(redisContext *context, struct market_info *info)
 
     return 0;
 }
-
+/**
+ * @brief Create a market_info object
+ * 
+ * @param market 
+ * @return struct market_info* 
+ */
 static struct market_info *create_market(const char *market)
 {
     struct market_info *info = malloc(sizeof(struct market_info));

@@ -8,7 +8,7 @@
 
 static http_svr *svr;
 static nw_state *state;
-static dict_t *methods;
+static dict_t *methods; // a map whose key stangds for method(string) and value stands for function
 static rpc_clt *listener;
 
 static rpc_clt *matchengine;
@@ -88,6 +88,8 @@ static int on_http_request(nw_ses *ses, http_request_t *request)
     }
     log_trace("from: %s body: %s", nw_sock_human_addr(&ses->peer_addr), request->body);
 
+    // the real entry 
+    // struct request_info info = { .clt = clt, .cmd = cmd };
     dict_entry *entry = dict_find(methods, json_string_value(method));
     if (entry == NULL) {
         reply_not_found(ses, json_integer_value(id));

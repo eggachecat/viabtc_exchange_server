@@ -24,7 +24,11 @@ typedef struct dict_types {
     void (*key_destructor)(void *key);
     void (*val_destructor)(void *val);
 } dict_types;
-
+/**
+ * @brief dict的类型,很多东西都通过这个来保存
+ * 每个key对应的是一个dict_entry的array而不是dict_entry!
+ * 
+ */
 typedef struct dict_t {
     dict_entry **table;
     dict_types type;

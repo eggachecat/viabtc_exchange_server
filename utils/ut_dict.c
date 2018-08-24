@@ -62,7 +62,13 @@ static uint32_t dict_next_power(uint32_t size)
         realsize *= 2;
     }
 }
-
+/**
+ * @brief 初始化一个dict_t
+ * 
+ * @param type 
+ * @param init_size 
+ * @return dict_t* 
+ */
 dict_t *dict_create(dict_types *type, uint32_t init_size)
 {
     if (type->hash_function == NULL)
@@ -77,6 +83,8 @@ dict_t *dict_create(dict_types *type, uint32_t init_size)
     dt->size = dict_next_power(init_size);
     dt->mask = dt->size - 1;
     dt->used = 0;
+    // point to array of dict_entry
+    // 2D dict_entry
     dt->table = calloc(dt->size, sizeof(dict_entry *));
     if (dt->table == NULL) {
         free(dt);
@@ -147,7 +155,13 @@ static void check_clear(dict_t *dt, uint32_t index)
         entry = next;
     }
 }
-
+/**
+ * @brief key到了再linked list上去找
+ * 
+ * @param dt 
+ * @param key 
+ * @return dict_entry* 
+ */
 dict_entry *dict_find(dict_t *dt, const void *key)
 {
     uint32_t index = DICT_HASH_KEY(dt, key) & dt->mask;
@@ -162,7 +176,14 @@ dict_entry *dict_find(dict_t *dt, const void *key)
     }
     return NULL;
 }
-
+/**
+ * @brief 给dict加key和value
+ * 
+ * @param dt 
+ * @param key 
+ * @param val 
+ * @return dict_entry* 
+ */
 dict_entry *dict_add(dict_t *dt, void *key, void *val)
 {
     if (dict_find(dt, key) != NULL)

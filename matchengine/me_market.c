@@ -255,7 +255,12 @@ static int order_finish(bool real, market_t *m, order_t *order)
     order_free(order);
     return 0;
 }
-
+/**
+ * @brief 注册市场资讯咯
+ * 
+ * @param conf 市场的conf
+ * @return market_t* 返回一个market_t的结构
+ */
 market_t *market_create(struct market *conf)
 {
     if (!asset_exist(conf->stock) || !asset_exist(conf->money))
@@ -302,7 +307,7 @@ market_t *market_create(struct market *conf)
     skiplist_type lt;
     memset(&lt, 0, sizeof(lt));
     lt.compare          = order_match_compare;
-
+    // 初始化这个市场的asks和bids
     m->asks = skiplist_create(&lt);
     m->bids = skiplist_create(&lt);
     if (m->asks == NULL || m->bids == NULL)

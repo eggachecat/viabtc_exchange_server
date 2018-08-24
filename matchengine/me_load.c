@@ -9,6 +9,13 @@
 # include "me_update.h"
 # include "me_balance.h"
 
+/**
+ * @brief 从数据库读取数据库
+ * 
+ * @param conn 
+ * @param table 
+ * @return int 
+ */
 int load_orders(MYSQL *conn, const char *table)
 {
     size_t query_limit = 1000;
@@ -72,7 +79,13 @@ int load_orders(MYSQL *conn, const char *table)
 
     return 0;
 }
-
+/**
+ * @brief 从数据库中把各个的balance都load出来(每次读取1000个(不是上限1000))
+ * 
+ * @param conn 
+ * @param table 
+ * @return int 
+ */
 int load_balance(MYSQL *conn, const char *table)
 {
     size_t query_limit = 1000;
